@@ -2,6 +2,7 @@
 # python loadimage.py --image yellingcat.png
 # 上記のコードをコンパイルする時にペースト
 # --imageの後にファイル内画像の名前を指定してサイズを取得できる
+# さらにそれをスクリーン上に自動的に表示
 
 import argparse
 import cv2
