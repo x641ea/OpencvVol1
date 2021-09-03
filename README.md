@@ -1,6 +1,8 @@
-# OpenCV mark1
+# OpenCV part1
 画像のサイズを取得
-# OpenCV mark2
+# OpenCV part2
 画像を分析して切り取る
-# OpenCV mark3
+# OpenCV part3
 画像に合わせて顔文字を生成。しかし、手動で生成する必要がある。
+# OpenCV part4
+画像を左右右上などにずらす
