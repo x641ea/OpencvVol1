@@ -1,0 +1,44 @@
+# コンパイルす時に以下のコードをターミナルに入力
+# python opencv_rotate.py
+
+import argparse
+import imutils
+import cv2
+
+# 引数解析構文機能を構築し、引数を解析する。
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--image", type=str, default="opencv_logo.png",
+	help="path to the input image")
+args = vars(ap.parse_args())
+
+# 画像を読み込んで表示する。
+image = cv2.imread(args["image"])
+cv2.imshow("Original", image)
+
+# 画像の寸法を取得し、画像の中心を計算する。
+(h, w) = image.shape[:2]
+(cX, cY) = (w // 2, h // 2)
+
+# 画像の中心を中心に45度回転させる。
+M = cv2.getRotationMatrix2D((cX, cY), 45, 1.0)
+rotated = cv2.warpAffine(image, M, (w, h))
+cv2.imshow("Rotated by 45 Degrees", rotated)
+
+# 画像を中心に-90度回転させる。
+M = cv2.getRotationMatrix2D((cX, cY), -90, 1.0)
+rotated = cv2.warpAffine(image, M, (w, h))
+cv2.imshow("Rotated by -90 Degrees", rotated)
+
+# 中心ではなく、任意の点を中心に画像を回転させる。
+M = cv2.getRotationMatrix2D((10, 10), 45, 1.0)
+rotated = cv2.warpAffine(image, M, (w, h))
+cv2.imshow("Rotated by Arbitrary Point", rotated)
+
+# 画像を180度回転させるには、imutilsの関数を使う。
+rotated = imutils.rotate(image, 180)
+cv2.imshow("Rotated by 180 Degrees", rotated)
+
+# 画像を反時計回りに33度回転させると、回転した画像全体が表示領域に表示される。
+rotated = imutils.rotate_bound(image, -33)
+cv2.imshow("Rotated Without Cropping", rotated)
+cv2.waitKey(0)
